@@ -5,7 +5,7 @@
 ## 🛠 Технологии
 * **Backend**: Python, Flask, SQLAlchemy.
 * **Frontend**: HTML5, Tailwind CSS.
-* **БД**: SQLite[cite: 3].
+* **БД**: SQLite.
 
 ## 🚀 Запуск
 1. Установите зависимости: `pip install -r requirements.txt`.
