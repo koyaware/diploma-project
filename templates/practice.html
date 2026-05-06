@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ work.title }}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                background-color: #020617;
+                color: rgba(255, 255, 255, 0.9);
+                font-family: "Inter", sans-serif;
+            }
+            .glass-panel {
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+            }
+            .liquid-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(
+                    circle at 10% 20%,
+                    #0f172a 0%,
+                    #020617 100%
+                );
+                z-index: -2;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen py-16 md:py-24 px-6 relative">
+        <div class="liquid-bg"></div>
+
+        <div class="container mx-auto max-w-7xl">
+            <!-- Кнопка назад -->
+            <a
+                href="/"
+                class="inline-flex items-center gap-2 text-white/40 hover:text-cyan-400 transition-colors mb-16 text-[10px] font-bold uppercase tracking-[0.4em]"
+            >
+                <svg
+                    class="w-4 h-4 rotate-180"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    ></path>
+                </svg>
+                Назад к списку
+            </a>
+
+            <div class="grid lg:grid-cols-2 gap-16 xl:gap-24 items-start">
+                <!-- Левая колонка: Описание и секции -->
+                <div class="space-y-16">
+                    <div>
+                        <div class="flex items-start gap-4 mb-8">
+                            <div
+                                class="w-1.5 h-12 bg-cyan-400 rounded-full mt-1 shrink-0"
+                            ></div>
+                            <h1
+                                class="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]"
+                            >
+                                {{ work.title }}
+                            </h1>
+                        </div>
+                        <p
+                            class="text-cyan-400 font-bold text-xs tracking-[0.2em] uppercase mb-10"
+                        >
+                            {{ work.subtitle }}
+                        </p>
+                        <p
+                            class="text-white/50 text-xl font-light leading-relaxed max-w-xl"
+                        >
+                            {{ work.description }}
+                        </p>
+                    </div>
+
+                    <div class="space-y-10">
+                        {% for section in sections %}
+                        <div
+                            class="glass-panel p-10 md:p-12 rounded-[56px] border-white/5 relative overflow-hidden group hover:border-cyan-500/20 transition-all duration-700"
+                        >
+                            <!-- Фоновое свечение -->
+                            <div
+                                class="absolute -top-24 -right-24 w-64 h-64 bg-cyan-400/5 blur-[80px] group-hover:bg-cyan-400/10 transition-all duration-1000"
+                            ></div>
+
+                            <div class="flex items-center gap-5 mb-10">
+                                <div
+                                    class="w-12 h-12 rounded-2xl bg-cyan-400/10 flex items-center justify-center text-cyan-400 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-500"
+                                >
+                                    {% if section['icon'] == 'cpu' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'database' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'layout' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'check-circle' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'box' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'zap' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 10V3L4 14h7v7l9-11h-7z"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'globe' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'settings' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                                        ></path>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'tool' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 11-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H7a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
+                                        ></path>
+                                    </svg>
+                                    {% elif section['icon'] == 'shield-check' %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                        ></path>
+                                    </svg>
+                                    {% else %}
+                                    <svg
+                                        class="w-6 h-6"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path>
+                                    </svg>
+                                    {% endif %}
+                                </div>
+                                <h3
+                                    class="text-3xl font-black tracking-tighter"
+                                >
+                                    {{ section['title'] }}
+                                </h3>
+                            </div>
+
+                            <ul class="space-y-6">
+                                {% for item in section['items'] %}
+                                <li class="flex items-start gap-4 group/item">
+                                    <div
+                                        class="w-2 h-2 rounded-full bg-cyan-400 mt-2 shrink-0 shadow-[0_0_10px_rgba(34,211,238,0.8)]"
+                                    ></div>
+                                    <span
+                                        class="text-white/60 group-hover/item:text-white transition-colors leading-relaxed"
+                                        >{{ item }}</span
+                                    >
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endfor %} {% if work.comparison %}
+                        <div
+                            class="glass-panel p-10 md:p-12 rounded-[56px] border border-cyan-400/20 bg-cyan-400/5 backdrop-blur-xl"
+                        >
+                            <div class="flex items-center gap-4 mb-8">
+                                <div
+                                    class="w-1.5 h-8 bg-cyan-400 rounded-full"
+                                ></div>
+                                <h3
+                                    class="text-2xl font-black uppercase tracking-[0.2em] text-cyan-400"
+                                >
+                                    {% if work.id == 1 %}Сравнение систем{% elif
+                                    work.id in [3, 4, 5] %}Общие аспекты{% else
+                                    %}Аналитический итог{% endif %}
+                                </h3>
+                            </div>
+                            <div
+                                class="space-y-6 text-white/60 leading-relaxed font-light"
+                            >
+                                {% for p in work.comparison.split('\n\n') %}
+                                <p>{{ p }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Кнопка выполнения -->
+                    {% if not work.is_completed %}
+                    <button
+                        onclick="markComplete({{ work.id }})"
+                        id="completeBtn"
+                        class="w-full py-8 rounded-[40px] bg-cyan-400 text-black font-black uppercase tracking-[0.3em] text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_60px_rgba(34,211,238,0.3)] flex items-center justify-center gap-4 group"
+                    >
+                        <span id="btnText"
+                            >Завершить работу и сохранить в БД</span
+                        >
+                        <svg
+                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                            ></path>
+                        </svg>
+                    </button>
+                    {% else %}
+                    <div
+                        class="w-full py-8 rounded-[40px] border border-cyan-400/30 bg-cyan-400/5 text-cyan-400 font-black uppercase tracking-[0.3em] text-[10px] text-center backdrop-blur-md"
+                    >
+                        ✓ Работа выполнена
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Правая колонка: Изображение -->
+                <div class="lg:sticky lg:top-24 mt-20 lg:mt-0">
+                    <div
+                        class="relative rounded-[72px] overflow-hidden border border-white/5 aspect-[4/5] shadow-[0_40px_100px_rgba(0,0,0,0.5)]"
+                    >
+                        <img
+                            src="{{ work.image }}"
+                            alt="{{ work.title }}"
+                            class="w-full h-full object-cover brightness-75 hover:scale-105 transition-all duration-[2000ms]"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
+                        ></div>
+
+                        <!-- Плавающая карточка (как на скрине) -->
+                        <div
+                            class="absolute bottom-12 right-12 left-12 glass-panel p-10 rounded-[48px] border-white/10 backdrop-blur-3xl shadow-2xl"
+                        >
+                            <div class="flex items-center gap-4 mb-6">
+                                <div
+                                    class="w-10 h-10 rounded-xl bg-cyan-400 flex items-center justify-center text-black shadow-[0_0_20px_rgba(34,211,238,0.5)]"
+                                >
+                                    <svg
+                                        class="w-5 h-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-400"
+                                    >Industry Quality</span
+                                >
+                            </div>
+                            <h4
+                                class="text-2xl font-black leading-tight tracking-tight"
+                            >
+                                {{ work.featured_text }}
+                            </h4>
+                        </div>
+                    </div>
+
+                    <!-- Новая карточка видео (Справа под основным фото) -->
+                    <div
+                        class="mt-8 glass-panel p-8 md:p-10 rounded-[56px] border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-500 overflow-hidden relative group"
+                    >
+                        <div
+                            class="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity"
+                        >
+                            <svg
+                                class="w-24 h-24 text-cyan-400"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-cyan-400/10 flex items-center justify-center text-cyan-400"
+                                >
+                                    <svg
+                                        class="w-5 h-5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+                                        ></path>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-[0.3em] text-cyan-400"
+                                    >Видеоматериалы</span
+                                >
+                            </div>
+                            <h4 class="text-xl font-bold mb-4">
+                                {{ work.video_title }}
+                            </h4>
+                            <p
+                                class="text-sm text-white/40 mb-8 leading-relaxed"
+                            >
+                                {{ work.video_desc }}
+                            </p>
+                            <button
+                                onclick="toggleVideoModal(true)"
+                                class="flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 text-[10px] font-bold uppercase tracking-widest hover:bg-cyan-400 hover:text-black transition-all"
+                            >
+                                Смотреть пример
+                                <svg
+                                    class="w-3 h-3"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="mt-40 pt-16 border-t border-white/5 text-center">
+                <p
+                    class="text-[10px] text-white/10 uppercase tracking-[0.5em] font-bold"
+                >
+                    Rahmanov Ilyor — TUIT 2024
+                </p>
+            </footer>
+        </div>
+
+        <!-- Video Modal -->
+        <div
+            id="videoModal"
+            class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+        >
+            <div
+                class="absolute inset-0 bg-black/90 backdrop-blur-sm"
+                onclick="toggleVideoModal(false)"
+            ></div>
+            <div
+                class="relative w-full max-w-4xl aspect-video bg-black rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
+            >
+                <iframe
+                    id="videoIframe"
+                    class="w-full h-full"
+                    src=""
+                    frameborder="0"
+                    allow="
+                        accelerometer;
+                        autoplay;
+                        clipboard-write;
+                        encrypted-media;
+                        gyroscope;
+                        picture-in-picture;
+                    "
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen
+                ></iframe>
+                <button
+                    onclick="toggleVideoModal(false)"
+                    class="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/80 rounded-full text-white/70 hover:text-white transition-all"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        ></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <script>
+            function toggleVideoModal(show) {
+                const modal = document.getElementById("videoModal");
+                const iframe = document.getElementById("videoIframe");
+                if (show) {
+                    modal.classList.remove("hidden");
+                    modal.classList.add("flex");
+                    iframe.src = "{{ work.video_url }}";
+                } else {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
+                    iframe.src = "";
+                }
+            }
+
+            async function markComplete(id) {
+                const btn = document.getElementById("completeBtn");
+                const text = document.getElementById("btnText");
+                try {
+                    const response = await fetch(`/api/complete/${id}`, {
+                        method: "POST",
+                    });
+                    if (response.ok) {
+                        text.innerHTML = "✓ Данные сохранены";
+                        btn.className =
+                            "w-full py-8 rounded-[40px] border border-cyan-400/30 bg-cyan-400/5 text-cyan-400 font-black uppercase tracking-[0.3em] text-[10px] text-center";
+                        btn.disabled = true;
+                        setTimeout(() => window.location.reload(), 800);
+                    }
+                } catch (e) {
+                    alert("Ошибка SQLite");
+                }
+            }
+        </script>
+    </body>
+</html>

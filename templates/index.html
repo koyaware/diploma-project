@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ title }}</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            body {
+                background-color: #020617;
+                color: rgba(255, 255, 255, 0.9);
+                font-family: "Inter", sans-serif;
+                overflow-x: hidden;
+            }
+            .liquid-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: radial-gradient(
+                    circle at 50% 50%,
+                    #0f172a 0%,
+                    #020617 100%
+                );
+                z-index: -2;
+            }
+            .blob {
+                position: absolute;
+                width: 500px;
+                height: 500px;
+                background: rgba(34, 211, 238, 0.15);
+                filter: blur(80px);
+                border-radius: 50%;
+                z-index: -1;
+                animation: move 20s infinite alternate;
+            }
+            @keyframes move {
+                from {
+                    transform: translate(-10%, -10%);
+                }
+                to {
+                    transform: translate(20%, 20%);
+                }
+            }
+            .glass-panel {
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            }
+            .liquid-text {
+                background: linear-gradient(
+                    to bottom,
+                    #fff 30%,
+                    rgba(255, 255, 255, 0.4) 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        </style>
+    </head>
+    <body class="min-h-screen relative pb-20">
+        <div class="liquid-bg"></div>
+        <div class="blob" style="top: 10%; left: 10%"></div>
+        <div
+            class="blob"
+            style="bottom: 10%; right: 10%; background: rgba(14, 165, 233, 0.1)"
+        ></div>
+
+        <main class="container mx-auto px-6 max-w-6xl pt-32">
+            <header class="text-center mb-32 relative">
+                <div class="absolute -top-16 right-0">
+                    <button
+                        onclick="resetProgress()"
+                        class="glass-panel px-4 py-2 rounded-2xl text-[9px] uppercase tracking-[0.3em] text-white/20 hover:text-cyan-400 hover:border-cyan-400/30 transition-all"
+                    >
+                        Сбросить прогресс
+                    </button>
+                </div>
+                <div
+                    class="inline-flex items-center px-4 py-1 rounded-full glass-panel text-[10px] uppercase tracking-[0.4em] text-cyan-400 mb-8"
+                >
+                    ДИПЛОМНЫЙ ПРОЕКТ — 2024
+                </div>
+                <h1
+                    class="text-6xl md:text-8xl font-black mb-12 liquid-text leading-tight tracking-tighter"
+                >
+                    Виртуальная <br />
+                    Реальность
+                </h1>
+                <p class="text-white/40 text-sm tracking-widest uppercase">
+                    Мультимедийное учебное пособие
+                </p>
+            </header>
+
+            <div class="flex flex-wrap justify-center gap-8">
+                {% for work in works %}
+                <a
+                    href="/practice/{{ work.id }}"
+                    class="group w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)]"
+                >
+                    <div
+                        class="glass-panel p-10 rounded-[48px] h-full transition-all duration-500 hover:bg-white/5 border-white/5 hover:border-cyan-500/30"
+                    >
+                        <div class="flex items-center justify-between mb-8">
+                            <div
+                                class="w-12 h-12 rounded-2xl bg-cyan-400/10 flex items-center justify-center group-hover:bg-cyan-400 group-hover:text-black transition-all"
+                            >
+                                <span class="font-bold">0{{ work.id }}</span>
+                            </div>
+                            {% if work.is_completed %}
+                            <div
+                                class="flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-400/20 border border-cyan-400/30"
+                            >
+                                <div
+                                    class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"
+                                ></div>
+                                <span
+                                    class="text-[8px] font-black uppercase tracking-widest text-cyan-400"
+                                    >ВЫПОЛНЕНО</span
+                                >
+                            </div>
+                            {% endif %}
+                        </div>
+                        <h3
+                            class="text-2xl font-bold mb-4 tracking-tight leading-tight"
+                        >
+                            {{ work.title }}
+                        </h3>
+                        <p
+                            class="text-white/40 text-sm leading-relaxed mb-8 h-12 line-clamp-2"
+                        >
+                            {{ work.subtitle }}
+                        </p>
+                        <div
+                            class="flex items-center text-cyan-400 text-xs font-bold tracking-widest uppercase gap-2"
+                        >
+                            Начать работу
+                            <svg
+                                class="w-4 h-4 translate-x-0 group-hover:translate-x-2 transition-transform"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                ></path>
+                            </svg>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </main>
+
+        <footer class="mt-40 text-center">
+            <p class="text-white/20 text-[10px] tracking-[0.5em] uppercase">
+                Рахманов Ильёр — ТУИТ 2024
+            </p>
+        </footer>
+
+        <script>
+            async function resetProgress() {
+                if (confirm("Вы уверены, что хотите сбросить весь прогресс?")) {
+                    try {
+                        const response = await fetch("/api/reset", {
+                            method: "POST",
+                        });
+                        if (response.ok) {
+                            window.location.reload();
+                        }
+                    } catch (e) {
+                        alert("Ошибка при сбросе");
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
