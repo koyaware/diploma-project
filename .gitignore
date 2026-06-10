@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Виртуальное окружение
+venv/
+.venv/
+env/
+bin/
+include/
+share/
+
+# База данных SQLite (конкретно ваша и любые другие)
+*.db
+vr_v16.db
+
+# Переменные окружения (если будете использовать .env файлы)
+.env
+.flaskenv
+
+# IDE / Редакторы
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Операционная система
+.DS_Store
+Thumbs.db

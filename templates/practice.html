@@ -61,7 +61,7 @@
             </a>
 
             <div class="grid lg:grid-cols-2 gap-16 xl:gap-24 items-start">
-                <!-- Левая колонка: Описание и секции -->
+                <!-- Левая колонка -->
                 <div class="space-y-16">
                     <div>
                         <div class="flex items-start gap-4 mb-8">
@@ -91,7 +91,6 @@
                         <div
                             class="glass-panel p-10 md:p-12 rounded-[56px] border-white/5 relative overflow-hidden group hover:border-cyan-500/20 transition-all duration-700"
                         >
-                            <!-- Фоновое свечение -->
                             <div
                                 class="absolute -top-24 -right-24 w-64 h-64 bg-cyan-400/5 blur-[80px] group-hover:bg-cyan-400/10 transition-all duration-1000"
                             ></div>
@@ -310,16 +309,942 @@
                         {% endif %}
                     </div>
 
-                    <!-- Кнопка выполнения -->
+                    <!-- Интерактивный мини-бабл с тестами -->
+                    <div
+                        id="quizBubble"
+                        class="glass-panel p-8 rounded-[36px] border border-cyan-400/30 bg-cyan-950/10 backdrop-blur-md shadow-[0_15px_40px_rgba(34,211,238,0.05)] relative mb-8"
+                    >
+                        <div
+                            class="absolute -bottom-2 left-12 w-4 h-4 bg-slate-900 border-r border-b border-cyan-400/30 rotate-45"
+                        ></div>
+
+                        <div class="flex items-center gap-3 mb-6">
+                            <div
+                                class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,1)]"
+                            ></div>
+                            <h4
+                                class="text-xs font-black uppercase tracking-[0.2em] text-cyan-400"
+                            >
+                                {% if work.is_completed %}Результаты
+                                экспресс-тестирования{% else %}Контрольный тест
+                                перед завершением{% endif %}
+                            </h4>
+                        </div>
+
+                        <div class="space-y-6">
+                            {% if work.id == 1 %}
+                            <!-- Тест 1 -->
+                            <div class="quiz-block" data-correct="B">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    1. Какой язык программирования является
+                                    основным в экосистеме Unity?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) C++</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) C#</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Python</label
+                                    >
+                                </div>
+                            </div>
+                            <!-- Тест 2 -->
+                            <div class="quiz-block" data-correct="A">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    2. Как называется технология динамического
+                                    глобального освещения в Unreal Engine 5?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Lumen</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Nanite</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) PhysX</label
+                                    >
+                                </div>
+                            </div>
+                            <!-- Тест 3 -->
+                            <div class="quiz-block" data-correct="C">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    3. Что означает термин DoF в контексте VR
+                                    устройств?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Depth of Field (Глубина
+                                        резкости)</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Director of Finance (Финансовый
+                                        директор)</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Degrees of Freedom (Степени
+                                        свободы)</label
+                                    >
+                                </div>
+                            </div>
+
+                            {% elif work.id == 2 %}
+                            <div class="quiz-block" data-correct="B">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    1. Какой элемент является отправной точкой
+                                    при разработке сценария?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Оценка бюджета</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Основная концепция и идея</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Рендеринг сцены</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="A">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    2. Когда целесообразно проводить подробный
+                                    анализ и декомпозицию сценария?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) На раннем этапе проектирования</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Только после финального релиза</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) В процессе маркетинговой
+                                        кампании</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="C">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    3. Что проверяет критерий «Соответствие
+                                    целям» при оценке готового сценария?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Скорость загрузки ассетов</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Количество полигонов у моделей</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Насколько эффективно проект доносит
+                                        свою идею</label
+                                    >
+                                </div>
+                            </div>
+
+                            {% elif work.id == 3 %}
+                            <div class="quiz-block" data-correct="B">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    1. Какой физический движок используется по
+                                    умолчанию в Unity?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Chaos Physics</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) PhysX</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Havok</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="A">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    2. Какой компонент обязателен в Unity, чтобы
+                                    на игровой объект начала действовать
+                                    гравитация?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Rigidbody</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Mesh Collider</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Transform</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="C">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    3. С какой целью разработчики настраивают
+                                    коллизии (Colliders) у 3D-моделей в VR?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Для изменения цвета и шейдера
+                                        объекта</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Для программного увеличения
+                                        FPS</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Для фиксации столкновений и осязаемых
+                                        физических границ</label
+                                    >
+                                </div>
+                            </div>
+
+                            {% elif work.id == 4 %}
+                            <div class="quiz-block" data-correct="B">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    1. Как называется официальный маркетплейс
+                                    ассетов и расширений для движка Unity?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Epic Games Store</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Unity Asset Store</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Steam Workshop</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="A">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    2. Какое важное преимущество дает
+                                    разработчикам открытый исходный код Unreal
+                                    Engine?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Глубокая кастомизация и модификация
+                                        систем движка</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Автоматическое добавление модов во
+                                        все игры</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Освобождение от уплаты роялти</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="B">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    3. Какое ПО чаще всего применяется для
+                                    создания 3D-контента перед импортом в
+                                    проект?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Adobe Photoshop</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Blender / Autodesk Maya</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Premiere Pro</label
+                                    >
+                                </div>
+                            </div>
+
+                            {% else %}
+                            <div class="quiz-block" data-correct="C">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    1. Что является первоочередной задачей на
+                                    этапе доработки программного VR-продукта?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Написание маркетингового плана</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Замена всей фоновой музыки</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q1"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Багфиксинг (исправление критических
+                                        ошибок)</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="B">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    2. В чем главное отличие автоматизированного
+                                    тестирования от ручного (Manual QA)?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Выполняется исключительно живыми
+                                        пользователями</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Осуществляется с помощью специальных
+                                        программных скриптов</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q2"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Не требует наличия исходного кода
+                                        проекта</label
+                                    >
+                                </div>
+                            </div>
+                            <div class="quiz-block" data-correct="A">
+                                <p
+                                    class="text-sm font-semibold text-white/90 mb-3"
+                                >
+                                    3. Какая техническая характеристика
+                                    оптимизации критична для предотвращения
+                                    укачивания в VR?
+                                </p>
+                                <div class="space-y-2 options-container">
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="A"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        A) Высокий и стабильный FPS (частота
+                                        кадров)</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="B"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        B) Разрешение текстур интерфейса</label
+                                    >
+                                    <label
+                                        class="flex items-center gap-3 text-sm text-white/60 p-2 rounded-xl hover:bg-white/5 cursor-pointer border border-transparent"
+                                        ><input
+                                            type="radio"
+                                            name="q3"
+                                            value="C"
+                                            {%
+                                            if
+                                            work.is_completed
+                                            %}disabled{%
+                                            endif
+                                            %}
+                                            class="accent-cyan-400"
+                                        />
+                                        C) Вес итогового скомпилированного
+                                        файла</label
+                                    >
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
                     {% if not work.is_completed %}
                     <button
                         onclick="markComplete({{ work.id }})"
                         id="completeBtn"
                         class="w-full py-8 rounded-[40px] bg-cyan-400 text-black font-black uppercase tracking-[0.3em] text-[10px] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_20px_60px_rgba(34,211,238,0.3)] flex items-center justify-center gap-4 group"
                     >
-                        <span id="btnText"
-                            >Завершить работу и сохранить в БД</span
-                        >
+                        <span id="btnText">Завершить работу</span>
                         <svg
                             class="w-4 h-4 group-hover:translate-x-1 transition-transform"
                             fill="none"
@@ -343,7 +1268,7 @@
                     {% endif %}
                 </div>
 
-                <!-- Правая колонка: Изображение -->
+                <!-- Правая колонка -->
                 <div class="lg:sticky lg:top-24 mt-20 lg:mt-0">
                     <div
                         class="relative rounded-[72px] overflow-hidden border border-white/5 aspect-[4/5] shadow-[0_40px_100px_rgba(0,0,0,0.5)]"
@@ -357,7 +1282,6 @@
                             class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"
                         ></div>
 
-                        <!-- Плавающая карточка (как на скрине) -->
                         <div
                             class="absolute bottom-12 right-12 left-12 glass-panel p-10 rounded-[48px] border-white/10 backdrop-blur-3xl shadow-2xl"
                         >
@@ -392,7 +1316,6 @@
                         </div>
                     </div>
 
-                    <!-- Новая карточка видео (Справа под основным фото) -->
                     <div
                         class="mt-8 glass-panel p-8 md:p-10 rounded-[56px] border border-white/5 bg-white/2 hover:bg-white/5 transition-all duration-500 overflow-hidden relative group"
                     >
@@ -450,19 +1373,6 @@
                                 class="flex items-center gap-2 px-6 py-3 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 text-[10px] font-bold uppercase tracking-widest hover:bg-cyan-400 hover:text-black transition-all"
                             >
                                 Смотреть пример
-                                <svg
-                                    class="w-3 h-3"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                                    ></path>
-                                </svg>
                             </button>
                         </div>
                     </div>
@@ -473,7 +1383,7 @@
                 <p
                     class="text-[10px] text-white/10 uppercase tracking-[0.5em] font-bold"
                 >
-                    Rahmanov Ilyor — TUIT 2024
+                    Rahmanov Ilyor — TUIT 2026
                 </p>
             </footer>
         </div>
@@ -503,7 +1413,6 @@
                         gyroscope;
                         picture-in-picture;
                     "
-                    referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen
                 ></iframe>
                 <button
@@ -528,6 +1437,44 @@
         </div>
 
         <script>
+            // Сценарий проверки и красивой подсветки ответов
+            document.addEventListener("DOMContentLoaded", () => {
+                const isCompleted = {{ 'true' if work.is_completed else 'false' }};
+                const workId = {{ work.id }};
+
+                if (isCompleted) {
+                    // Извлекаем сохраненные ответы пользователя из localStorage
+                    const savedAnswers = JSON.parse(localStorage.getItem(`quiz_answers_${workId}`)) || {};
+
+                    document.querySelectorAll('.quiz-block').forEach((block, index) => {
+                        const qNum = `q${index + 1}`;
+                        const correctVal = block.getAttribute('data-correct');
+                        const userVal = savedAnswers[qNum];
+
+                        block.querySelectorAll('label').forEach(label => {
+                            const radio = label.querySelector('input[type="radio"]');
+                            if (radio) {
+                                // Восстанавливаем выбранную пользователем точку
+                                if (radio.value === userVal) {
+                                    radio.checked = true;
+                                }
+
+                                // 1. Правильный ответ подсвечиваем ЗЕЛЕНЫМ
+                                if (radio.value === correctVal) {
+                                    label.classList.remove('text-white/60');
+                                    label.classList.add('text-emerald-400', 'font-bold', 'bg-emerald-500/10', 'border-emerald-500/30');
+                                }
+                                // 2. Неправильный ответ пользователя подсвечиваем КРАСНЫМ
+                                else if (radio.value === userVal && userVal !== correctVal) {
+                                    label.classList.remove('text-white/60');
+                                    label.classList.add('text-rose-400', 'font-bold', 'bg-rose-500/10', 'border-rose-500/30');
+                                }
+                            }
+                        });
+                    });
+                }
+            });
+
             function toggleVideoModal(show) {
                 const modal = document.getElementById("videoModal");
                 const iframe = document.getElementById("videoIframe");
@@ -543,6 +1490,23 @@
             }
 
             async function markComplete(id) {
+                const q1 = document.querySelector('input[name="q1"]:checked');
+                const q2 = document.querySelector('input[name="q2"]:checked');
+                const q3 = document.querySelector('input[name="q3"]:checked');
+
+                if (!q1 || !q2 || !q3) {
+                    alert("Вы не можете завершить работу, пока не ответите на все тестовые вопросы!");
+                    return;
+                }
+
+                // Перед записью в БД сохраняем выборы в локальный кэш браузера
+                const answers = {
+                    q1: q1.value,
+                    q2: q2.value,
+                    q3: q3.value
+                };
+                localStorage.setItem(`quiz_answers_${id}`, JSON.stringify(answers));
+
                 const btn = document.getElementById("completeBtn");
                 const text = document.getElementById("btnText");
                 try {

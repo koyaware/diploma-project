@@ -1,40 +1,49 @@
+<<<<<<< HEAD
 from flask import Flask, jsonify, render_template
+=======
+import json
+import os
+
+from flask import Flask, jsonify, render_template, request
+>>>>>>> 92b1094 (add tests for students)
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
 # База данных SQLite
+<<<<<<< HEAD
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///vr_v26.db"
+=======
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///vr_v25.db"
+>>>>>>> 92b1094 (add tests for students)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
+
 # Модель курса
-import json
-
-
 class PracticalWork(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(200), nullable=False)
     subtitle = db.Column(db.String(200))
     description = db.Column(db.Text)
-    comparison = db.Column(db.Text)  # Новое поле для сравнения
-    featured_text = db.Column(db.String(400))  # Инсайт на главной фото
-    video_title = db.Column(db.String(200))  # Заголовок видео
-    video_desc = db.Column(db.String(400))  # Описание видео
-    video_url = db.Column(db.String(500))  # Ссылка на видео
+    comparison = db.Column(db.Text)
+    featured_text = db.Column(db.String(400))
+    video_title = db.Column(db.String(200))
+    video_desc = db.Column(db.String(400))
+    video_url = db.Column(db.String(500))
     image = db.Column(db.String(500))
     sections_json = db.Column(db.Text)
     is_completed = db.Column(db.Boolean, default=False)
 
 
-# Полные данные для инициализации
+# Данные инициализации курса остаются прежними
 FULL_COURSE_DATA = [
     {
         "id": 1,
         "title": "Практическая работа №1",
         "subtitle": "Разработка нового проекта на Unity и Unreal engine",
         "description": "Разработка нового проекта на Unity и Unreal Engine — это процесс создания игр, симуляторов и визуализаций с использованием самых мощных движков в индустрии.",
-        "comparison": "Unity и Unreal Engine предлагают различные преимущества и уникальные функции, которые делают их очень привлекательными для разработки видеоигр и интерактивных приложений. Однако, в последнее время Unity начал опережать Unreal Engine по популярности, возможно, из-за более простого и интуитивного подхода к созданию игр на Unity по сравнению с Unreal Engine.\n\nОбей индустрии также имеют свои преимущества и недостатки, но оба движка обладают мощными возможностями для создания сложных и интерактивных приложений. Ваш выбор между Unity и Unreal Engine зависит от ваших индивидуальных предпочтений, навыков программирования и предполагаемого сценария проекта.",
+        "comparison": "Unity и Unreal Engine предлагают различные преимущества и уникальные функции, которые делают их очень привлекательными для разработки видеоигр и интерактивных приложений. Однако, в последнее время Unity начал опережать Unreal Engine по популярности, возможно, из-за более простого и интуитивного подхода к созданию игр на Unity по сравнению с Unreal Engine.\n\nОбей индустрии также имеют свои преимущества и недостатки, но оба движка обладают мощными возможностями для создания сложных и интерактивных приложений. Ваш выбор между Unity и Unreal Engine зависит от ваших индивидуальных предпочтений, навыки программирования и предполагаемого сценария проекта.",
         "featured_text": "Ведущие технологии индустрии VR промышленного обучения",
         "video_title": "Сравнение Unreal Engine и Unity",
         "video_desc": "Посмотрите подробный видеообзор ключевых отличий движков для промышленного VR.",
@@ -203,7 +212,6 @@ FULL_COURSE_DATA = [
 ]
 
 
-# Функция для наполнения БД начальными данными (если она пуста)
 def init_db():
     if PracticalWork.query.first() is None:
         for w in FULL_COURSE_DATA:
